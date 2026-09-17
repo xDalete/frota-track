@@ -1,6 +1,8 @@
 "use client";
 import Sidebar from "@/components/navigation/SideBar";
-import { Box } from "@mui/material";
+import TopBar from "@/components/navigation/TopBar";
+import { Box, Button, useColorScheme } from "@mui/material";
+import { SessionProvider, signOut } from "next-auth/react";
 
 export default function RootLayout({
   children
@@ -8,13 +10,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Box sx={{ display: "flex", flexDirection: "row", height: "100vh" }}>
-      <Box>
-        <Sidebar />
+    <SessionProvider>
+      <Box sx={{ display: "flex", flexDirection: "row", height: "100vh" }}>
+        <Box>
+          <Sidebar />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            backgroundColor: "background.default",
+            color: "text.primary"
+          }}
+        >
+          <TopBar />
+          <Box sx={{ padding: 2, overflowY: "scroll" }}>
+            <Box>{children}</Box>
+          </Box>
+        </Box>
       </Box>
-      <Box sx={{ flex: 1, overflowY: "auto", padding: 2 }}>
-        <Box>{children}</Box>
-      </Box>
-    </Box>
+    </SessionProvider>
   );
 }

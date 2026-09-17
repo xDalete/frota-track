@@ -24,9 +24,9 @@ export default function SideBarItem({ href, label, icon }: SideBarItemProps) {
         textDecoration: "none",
         borderRadius: 2,
         color: "inherit",
-        "&:hover": { backgroundColor: "action.hover" },
+        "&:hover": { backgroundColor: "sidebarPalette.action.hover" },
         transition: "background-color 0.2s",
-        backgroundColor: active ? "action.selected" : "transparent"
+        backgroundColor: active ? "sidebarPalette.action.selected" : "transparent"
       }}
     >
       {icon && (

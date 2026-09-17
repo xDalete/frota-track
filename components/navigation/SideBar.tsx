@@ -6,14 +6,15 @@ import SideBarItem from "./SideBarItem";
 const Sidebar = () => {
   return (
     <Box
+      component="nav"
       sx={{
         display: "flex",
         flexDirection: "column",
         width: 250,
         height: "100vh",
-        backgroundColor: "#0F172A",
+        backgroundColor: "sidebarPalette.background",
         padding: 2,
-        color: "primary.contrastText"
+        color: "sidebarPalette.text"
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
@@ -26,9 +27,11 @@ const Sidebar = () => {
         <SideBarItem href="/dashboard" label="Dashboard" icon={<GridViewOutlined />} />
         <SideBarItem href="/dashboard/veiculos" label="Veículos" icon={<LocalShippingOutlined />} />
         <SideBarItem href="/dashboard/motoristas" label="Motoristas" icon={<GroupAddOutlined />} />
-        <SideBarItem href="/dashboard/viagens" label="Viagens" icon={<LocationOnOutlined />} /> 
+        <SideBarItem href="/dashboard/viagens" label="Viagens" icon={<LocationOnOutlined />} />
       </Box>
-      <Typography variant="caption" color="textDisabled" sx={{ marginTop: "auto", textAlign: "center" }}>copyright © 2026</Typography>
+      <Typography variant="caption" color="textDisabled" sx={{ marginTop: "auto", textAlign: "center" }}>
+        copyright © 2026
+      </Typography>
     </Box>
   );
 };
