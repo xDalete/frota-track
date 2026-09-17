@@ -1,13 +1,22 @@
 "use client";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { signIn } from "next-auth/react";
 
 export default function Home() {
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 2,
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh"
+      }}
+    >
       <Button variant="contained" color="primary" onClick={() => signIn("github", { redirectTo: "/dashboard" })}>
         Logar com GitHub
       </Button>
-    </div>
+    </Box>
   );
 }

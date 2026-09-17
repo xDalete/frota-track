@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AppThemeProvider from "@/components/providers/AppThemeProvider";
+import { InitColorSchemeScript } from "@mui/material";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+    <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
+      <body>
+        <InitColorSchemeScript attribute="class" />
         <AppThemeProvider>{children}</AppThemeProvider>
       </body>
     </html>

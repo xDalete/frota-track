@@ -16,6 +16,9 @@ declare module "@mui/material/styles" {
 }
 
 const ThemeConfig = createTheme({
+  cssVariables: {
+    colorSchemeSelector: "class"
+  },
   typography: {
     fontFamily: "Inter, Arial, Helvetica, sans-serif"
   },
