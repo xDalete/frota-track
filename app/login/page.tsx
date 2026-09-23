@@ -1,8 +1,7 @@
-"use client";
+import { signIn } from "@/auth";
 import { Box, Button } from "@mui/material";
-import { signIn } from "next-auth/react";
 
-export default function Home() {
+export default function LoginPage() {
   return (
     <Box
       sx={{
@@ -14,9 +13,16 @@ export default function Home() {
         height: "100vh"
       }}
     >
-      <Button variant="contained" color="primary" onClick={() => signIn("github", { redirectTo: "/dashboard" })}>
-        Logar com GitHub
-      </Button>
+      <form
+        action={async () => {
+          "use server";
+          await signIn("github", { redirectTo: "/" });
+        }}
+      >
+        <Button type="submit" variant="contained" color="primary">
+          Logar com GitHub
+        </Button>
+      </form>
     </Box>
   );
 }
