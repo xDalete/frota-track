@@ -10,26 +10,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
-      <Box sx={{ display: "flex", flexDirection: "row", height: "100vh" }}>
-        <Box>
-          <Sidebar />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            backgroundColor: "background.default",
-            color: "text.primary"
-          }}
-        >
-          <TopBar />
-          <Box sx={{ padding: 2, overflowY: "scroll" }}>
-            <Box>{children}</Box>
-          </Box>
+    <Box sx={{ display: "flex", flexDirection: "row", height: "100vh" }}>
+      <Box>
+        <Sidebar />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "100%",
+          backgroundColor: "background.default",
+          color: "text.primary"
+        }}
+      >
+        <TopBar />
+        <Box sx={{ padding: 2, overflowY: "scroll" }}>
+          <Box>{children}</Box>
         </Box>
       </Box>
-    </SessionProvider>
+    </Box>
   );
 }

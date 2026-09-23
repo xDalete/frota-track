@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AppThemeProvider from "@/components/providers/AppThemeProvider";
 import { InitColorSchemeScript } from "@mui/material";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,8 +20,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <body>
-        <InitColorSchemeScript attribute="class" />
-        <AppThemeProvider>{children}</AppThemeProvider>
+        <SessionProvider>
+          <InitColorSchemeScript attribute="class" />
+          <AppThemeProvider>{children}</AppThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
