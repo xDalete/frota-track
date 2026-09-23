@@ -1,3 +1,4 @@
+import changeOpacity from "@/utils/color";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
 export default function MetricsCard({
@@ -27,7 +28,8 @@ export default function MetricsCard({
         <Box
           sx={{
             fontSize: "2rem",
-            backgroundColor: `oklch(from ${color} l c h / 20%)`,
+            backgroundColor: changeOpacity(color, 20),
+            color: color,
             borderRadius: "12px",
             aspectRatio: 1,
             flexShrink: 0,
