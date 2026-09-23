@@ -6,7 +6,8 @@ import { InitColorSchemeScript } from "@mui/material";
 
 const inter = Inter({
   variable: "--font-inter",
-  subsets: ["latin"]
+  subsets: ["latin"],
+  weight: "variable"
 });
 
 export const metadata: Metadata = {

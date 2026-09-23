@@ -1,41 +1,30 @@
 "use client";
-import { Box, Button, Card, CardContent, Typography } from "@mui/material";
-import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import MetricsCard from "@/components/metrics/MetricsCard";
+import { AssignmentOutlined, PlaceOutlined, SettingsOutlined } from "@mui/icons-material";
+import { Box, Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 
 export default function Home() {
-  const router = useRouter();
-  const { data: session } = useSession();
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, p: 2 }}>
       <Typography variant="h1" sx={{ mb: 2, fontSize: "2.5rem", fontWeight: "bold" }}>
         Dashboard
       </Typography>
+      <Grid container spacing={2}>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <MetricsCard name="Em Viagem" value="5" icon={<PlaceOutlined />} color="#006DFE" />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <MetricsCard name="Em Manutenção" value="3" icon={<SettingsOutlined />} color="#FE0000" />
+        </Grid>
+        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <MetricsCard name="Viagens" value="47" icon={<AssignmentOutlined />} color="#001933" />
+        </Grid>
+      </Grid>
       <Card>
+        <CardHeader title="Viagens em Andamento" />
         <CardContent>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "start" }}>
-            <Button variant="contained" color="primary" onClick={() => router.push("/login")}>
-              Ir para Login
-            </Button>
-            {session && (
-              <>
-                <Button variant="contained" onClick={() => signOut()}>
-                  Logout
-                </Button>
-                <Typography variant="body1">User: {session?.user?.name}</Typography>
-                <Typography variant="body1">Email: {session?.user?.email}</Typography>
-                {session?.user?.image && <Image src={session?.user?.image} alt="User Image" width={100} height={100} />}
-              </>
-            )}
-          </Box>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
-            {Array.from({ length: 100 }, (_, i) => (
-              <Button variant="contained" color="primary" key={i}>
-                Teste
-              </Button>
-            ))}
-          </Box>
+          <Typography variant="body1">Aqui você pode ver todas as viagens que estão em andamento.</Typography>
+          
         </CardContent>
       </Card>
     </Box>

@@ -1,8 +1,8 @@
 "use client";
 import Sidebar from "@/components/navigation/SideBar";
 import TopBar from "@/components/navigation/TopBar";
-import { Box, Button, useColorScheme } from "@mui/material";
-import { SessionProvider, signOut } from "next-auth/react";
+import { Box } from "@mui/material";
+import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
   children

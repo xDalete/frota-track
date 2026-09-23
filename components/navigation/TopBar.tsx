@@ -1,5 +1,6 @@
 import { Box, IconButton, useColorScheme } from "@mui/material";
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
+import UserMenu from "../user/UserMenu";
 
 export default function TopBar() {
   const { mode, setMode } = useColorScheme();
@@ -16,12 +17,14 @@ export default function TopBar() {
         height: "80px",
         alignItems: "center",
         flexShrink: 0,
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
+        gap: 2
       }}
     >
       <IconButton color="primary" onClick={() => setMode(mode === "light" ? "dark" : "light")}>
         {mode === "light" ? <LightModeOutlined /> : <DarkModeOutlined />}
       </IconButton>
+      <UserMenu />
     </Box>
   );
 }
