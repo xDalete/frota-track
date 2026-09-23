@@ -14,7 +14,7 @@ export default function Home() {
         height: "100vh"
       }}
     >
-      <Button variant="contained" color="primary" onClick={() => signIn("github")}>
+      <Button variant="contained" color="primary" onClick={() => signIn("github", { redirectTo: "/dashboard" })}>
         Logar com GitHub
       </Button>
     </Box>
