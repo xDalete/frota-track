@@ -11,11 +11,19 @@ export type Veiculo = {
   id: number;
   placa: string;
   modelo: string;
+  marca: string;
   ano: number;
   capacidade: number;
   tipo: TipoVeiculo;
   habilitacaoNecessaria: CategoriaHabilitacao;
+  status: StatusVeiculo;
 };
+
+export enum StatusVeiculo {
+  DISPONIVEL = "Disponível",
+  EM_VIAGEM = "Em Viagem",
+  EM_MANUTENCAO = "Em Manutenção"
+}
 
 export enum CategoriaHabilitacao {
   A = "A",
@@ -26,10 +34,10 @@ export enum CategoriaHabilitacao {
 }
 
 export enum TipoVeiculo {
-  CARRO = "CARRO",
-  MOTO = "MOTO",
-  CAMINHAO = "CAMINHAO",
-  ONIBUS = "ONIBUS"
+  CARRO = "Carro",
+  MOTO = "Moto",
+  CAMINHAO = "Caminhão",
+  ONIBUS = "Ônibus"
 }
 
 export enum StatusViagem {
@@ -52,3 +60,5 @@ export type Viagem = {
   finalidade: string;
   status: StatusViagem;
 };
+
+export type WithId<T> = T & { id: number };

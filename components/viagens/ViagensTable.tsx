@@ -1,7 +1,7 @@
 import { Chip, colors } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import CustomTable from "../common/Table";
-import { Viagem } from "@/types/Viagem";
+import { StatusViagem, Viagem } from "@/types/ObjectTypes";
 import { formatShortTime } from "@/utils/format";
 import changeOpacity from "@/utils/color";
 
@@ -48,18 +48,14 @@ const columns: readonly GridColDef<Viagem>[] = [
     renderCell: ({ row }) => {
       const status = row.status;
       const colorMap = {
-        Agendada: colors.grey[500],
-        "Em Andamento": colors.blue[500],
-        Atrasada: colors.yellow[500],
-        Concluída: colors.green[500],
-        Cancelada: colors.red[500]
+        //TODO: Pensar em forma melhor de mapear cores para status e padronizar as cores do sistema
+        [StatusViagem.AGENDADA]: colors.grey[500],
+        [StatusViagem.EM_ANDAMENTO]: colors.blue[500],
+        [StatusViagem.ATRASADA]: colors.yellow[500],
+        [StatusViagem.CONCLUIDA]: colors.green[500],
+        [StatusViagem.CANCELADA]: colors.red[500]
       };
-      return (
-        <Chip
-          label={status}
-          sx={{ background: changeOpacity(colorMap[status], 20), color: colorMap[status] }}
-        />
-      );
+      return <Chip label={status} sx={{ background: changeOpacity(colorMap[status], 20), color: colorMap[status] }} />;
     }
   }
 ];

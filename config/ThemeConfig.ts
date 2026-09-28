@@ -23,18 +23,44 @@ const ThemeConfig = createTheme({
     fontFamily: "Inter, Arial, Helvetica, sans-serif"
   },
   shape: {
-    borderRadius: 6 // Changes default from 4px to 8px
+    borderRadius: 6
   },
   components: {
     MuiButton: {
       styleOverrides: {
-        root: { borderRadius: 8 }
+        root: {
+          borderRadius: 8,
+          textTransform: "none",
+          fontWeight: 600
+        }
       }
     },
     MuiCard: {
+      defaultProps: { variant: "outlined" },
       styleOverrides: {
         root: {
           borderRadius: 12
+        }
+      }
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8
+        }
+      }
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8
         }
       }
     }
@@ -44,47 +70,52 @@ const ThemeConfig = createTheme({
     light: {
       palette: {
         sidebarPalette: {
-          background: "#1b253b",
-          text: "#ffffff",
+          background: "hsla(212, 50%, 18%, 1)",
+          text: "hsla(0, 0%, 100%, 1)",
           action: {
-            hover: "rgba(255, 255, 255, 0.07)",
-            selected: "rgba(255, 255, 255, 0.1)"
+            hover: "hsla(0, 0%, 100%, 0.07)",
+            selected: "hsla(0, 0%, 100%, 0.1)"
           }
         },
         primary: {
-          light: "#556f8b",
-          main: "#2B4C6F",
-          dark: "#1e354d"
+          light: "hsla(212, 50%, 45%, 1)",
+          main: "hsla(212, 50%, 35%, 1)",
+          dark: "hsla(212, 50%, 25%, 1)"
         },
         secondary: {
-          light: "#ff7961",
-          main: "#f44336",
-          dark: "#ba000d"
+          light: "hsla(10, 100%, 69%, 1)",
+          main: "hsla(3, 90%, 58%, 1)",
+          dark: "hsla(356, 100%, 37%, 1)"
         },
-        background: { default: "#f2f4f7", paper: "#ffffff" }
+        background: { default: "hsla(212, 10%, 92%, 1)", paper: "hsla(212, 10%, 97%, 1)" }
       }
     },
     dark: {
       palette: {
+        text: {
+          primary: "hsla(0, 0%, 100%, 1)",
+          secondary: "hsla(0, 0%, 100%, 0.7)",
+          disabled: "hsla(0, 0%, 100%, 0.5)"
+        },
         sidebarPalette: {
-          background: "#0F172A",
-          text: "#ffffff",
+          background: "hsla(212, 50%, 10%, 1)",
+          text: "hsla(0, 0%, 100%, 1)",
           action: {
-            hover: "rgba(255, 255, 255, 0.07)",
-            selected: "rgba(255, 255, 255, 0.1)"
+            hover: "hsla(0, 0%, 100%, 0.07)",
+            selected: "hsla(0, 0%, 100%, 0.1)"
           }
         },
         primary: {
-          light: "#556f8b",
-          main: "#2B4C6F",
-          dark: "#1e354d"
+          light: "hsla(212, 50%, 45%, 1)",
+          main: "hsla(212, 50%, 35%, 1)",
+          dark: "hsla(212, 50%, 25%, 1)"
         },
         secondary: {
-          light: "#ff7961",
-          main: "#f44336",
-          dark: "#ba000d"
+          light: "hsla(10, 100%, 69%, 1)",
+          main: "hsla(3, 90%, 58%, 1)",
+          dark: "hsla(356, 100%, 37%, 1)"
         },
-        background: { default: "#151f35", paper: "#18243d" }
+        background: { default: "hsla(212, 50%, 13%, 1)", paper: "hsla(212, 50%, 15%, 1)" }
       }
     }
   }

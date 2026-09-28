@@ -1,28 +1,72 @@
-import { signIn } from "@/auth";
-import { Box, Button } from "@mui/material";
+"use client";
 
-export default function LoginPage() {
+import { Box, Button, Card, CardContent, Divider, Link, Typography, useColorScheme } from "@mui/material";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import { signIn } from "next-auth/react";
+import LoginForm from "@/components/login/LoginForm";
+
+export default function SignInPage() {
+  const { mode } = useColorScheme();
+
+  // TODO: integrar a recuperação de senha, o reset de senha e a autenticação real do backend quando a API estiver pronta.
+  const handleGithubLogin = () => {
+    signIn("github", { redirectTo: "/dashboard" });
+  };
+
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: 2,
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh"
+        height: "100vh",
+        backgroundImage:
+          mode === "dark"
+            ? "radial-gradient(hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))"
+            : "radial-gradient(hsl(210, 50%, 85%), hsl(0, 0%, 100%))"
       }}
     >
-      <form
-        action={async () => {
-          "use server";
-          await signIn("github", { redirectTo: "/dashboard" });
+      <Card
+        sx={{
+          width: "100%",
+          maxWidth: "450px"
         }}
       >
-        <Button type="submit" variant="contained" color="primary">
-          Logar com GitHub
-        </Button>
-      </form>
+        <CardContent sx={{ padding: 4, display: "flex", flexDirection: "column", gap: 2 }}>
+          <Typography variant="body1" sx={{ fontWeight: 500, fontSize: "2rem", width: "100%" }}>
+            Entrar
+          </Typography>
+
+          <LoginForm afterSubmit={() => {}} />
+
+          <Link href="/" variant="body2" sx={{ alignSelf: "center" }}>
+            Esqueceu sua senha?
+          </Link>
+
+          <Divider>ou</Divider>
+
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={handleGithubLogin}
+              startIcon={<GitHubIcon />}
+              type="submit"
+            >
+              Entrar com GitHub
+            </Button>
+
+            <Typography sx={{ textAlign: "center" }}>
+              Não tem uma conta?{" "}
+              <Link href="/" variant="body2" sx={{ alignSelf: "center" }}>
+                Cadastre-se
+              </Link>
+            </Typography>
+          </Box>
+        </CardContent>
+      </Card>
     </Box>
   );
 }
