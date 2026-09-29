@@ -1,9 +1,9 @@
 "use client";
 
 import { Box, Button, Card, CardContent, Divider, Link, Typography, useColorScheme } from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import { signIn } from "next-auth/react";
 import LoginForm from "@/components/login/LoginForm";
+import { GitHub, Google } from "@mui/icons-material";
 
 export default function SignInPage() {
   const { mode } = useColorScheme();
@@ -11,6 +11,10 @@ export default function SignInPage() {
   // TODO: integrar a recuperação de senha, o reset de senha e a autenticação real do backend quando a API estiver pronta.
   const handleGithubLogin = () => {
     signIn("github", { redirectTo: "/dashboard" });
+  };
+
+  const handleGoogleLogin = () => {
+    signIn("google", { redirectTo: "/dashboard" });
   };
 
   return (
@@ -52,10 +56,20 @@ export default function SignInPage() {
               variant="contained"
               color="primary"
               onClick={handleGithubLogin}
-              startIcon={<GitHubIcon />}
+              startIcon={<GitHub />}
               type="submit"
             >
               Entrar com GitHub
+            </Button>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={handleGoogleLogin}
+              startIcon={<Google />}
+              type="submit"
+            >
+              Entrar com Google
             </Button>
 
             <Typography sx={{ textAlign: "center" }}>
