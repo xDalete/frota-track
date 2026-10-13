@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CategoriaHabilitacao, Motorista } from "@/types/ObjectTypes";
+import { CategoriaHabilitacao, Motorista, StatusMotorista } from "@/types/ObjectTypes";
 import { Box, Card, CardContent, CardHeader } from "@mui/material";
 import MotoristasTable from "@/components/motorista/MotoristasTable";
 
@@ -17,7 +17,8 @@ export default function Home() {
           documento: "123456789",
           telefone: "11999999999",
           email: "joao.silva@example.com",
-          categoria: CategoriaHabilitacao.B
+          categoria: CategoriaHabilitacao.B,
+          status: StatusMotorista.ATIVO
         },
         {
           id: 2,
@@ -25,7 +26,8 @@ export default function Home() {
           documento: "234567890",
           telefone: "11988888888",
           email: "maria.oliveira@example.com",
-          categoria: CategoriaHabilitacao.C
+          categoria: CategoriaHabilitacao.C,
+          status: StatusMotorista.ATIVO
         },
         {
           id: 3,
@@ -33,7 +35,8 @@ export default function Home() {
           documento: "345678901",
           telefone: "11977777777",
           email: "carlos.santos@example.com",
-          categoria: CategoriaHabilitacao.B
+          categoria: CategoriaHabilitacao.B,
+          status: StatusMotorista.INATIVO
         },
         {
           id: 4,
@@ -41,7 +44,8 @@ export default function Home() {
           documento: "456789012",
           telefone: "11966666666",
           email: "ana.costa@example.com",
-          categoria: CategoriaHabilitacao.C
+          categoria: CategoriaHabilitacao.C,
+          status: StatusMotorista.ATIVO
         }
       ];
 
@@ -56,7 +60,15 @@ export default function Home() {
       <Card>
         <CardHeader title="Motoristas" />
         <CardContent>
-          <MotoristasTable dataSource={motoristas} />
+          <MotoristasTable
+            dataSource={motoristas}
+            onUpdate={motorista => {
+              setMotoristas(current => current.map(item => (item.id === motorista.id ? motorista : item)));
+            }}
+            onDelete={motoristaId => {
+              setMotoristas(current => current.filter(item => item.id !== motoristaId));
+            }}
+          />
         </CardContent>
       </Card>
     </Box>

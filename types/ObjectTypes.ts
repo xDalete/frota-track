@@ -5,6 +5,7 @@ export type Motorista = {
   telefone: string;
   email: string;
   categoria: CategoriaHabilitacao;
+  status: StatusMotorista;
 };
 
 export type Veiculo = {
@@ -23,6 +24,11 @@ export enum StatusVeiculo {
   DISPONIVEL = "Disponível",
   EM_VIAGEM = "Em Viagem",
   EM_MANUTENCAO = "Em Manutenção"
+}
+
+export enum StatusMotorista {
+  ATIVO = "Ativo",
+  INATIVO = "Inativo"
 }
 
 export enum CategoriaHabilitacao {

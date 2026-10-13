@@ -1,7 +1,14 @@
 "use client";
 import MetricsCard from "@/components/metrics/MetricsCard";
 import ViagensTable from "@/components/viagens/ViagensTable";
-import { CategoriaHabilitacao, StatusVeiculo, StatusViagem, TipoVeiculo, Viagem } from "@/types/ObjectTypes";
+import {
+  CategoriaHabilitacao,
+  StatusMotorista,
+  StatusVeiculo,
+  StatusViagem,
+  TipoVeiculo,
+  Viagem
+} from "@/types/ObjectTypes";
 import { AssignmentOutlined, PlaceOutlined, SettingsOutlined } from "@mui/icons-material";
 import { Box, Card, CardContent, CardHeader, colors, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -19,7 +26,8 @@ export default function Home() {
             documento: "123456789",
             email: "joao.silva@example.com",
             id: 1,
-            telefone: "11999999999"
+            telefone: "11999999999",
+            status: StatusMotorista.ATIVO
           },
           veiculo: {
             id: 1,
