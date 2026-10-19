@@ -4,7 +4,7 @@ import { useState } from "react";
 import { DeleteOutlined, EditOutlined } from "@mui/icons-material";
 import { Box, Button, Chip, colors, IconButton, Typography } from "@mui/material";
 import { GridColDef, GridDataSource } from "@mui/x-data-grid";
-import { Manutencao, StatusManutencao } from "@/types/ObjectTypes";
+import { Manutencao, StatusManutencao, TipoManutencao } from "@/types/ObjectTypes";
 import changeOpacity from "@/utils/color";
 import CustomModal from "../common/CustomModal";
 import CustomTable from "../common/Table";
@@ -19,25 +19,34 @@ type ManutencoesTableProps = {
 const statusColorMap = {
   [StatusManutencao.CONCLUIDO]: colors.green[500],
   [StatusManutencao.EM_ANDAMENTO]: colors.blue[500],
-  [StatusManutencao.PENDENTE]: colors.grey[500]
+  [StatusManutencao.AGENDADA]: colors.grey[500]
+};
+
+const maintenanceTypeColorMap = {
+  [TipoManutencao.PREVENTIVA]: colors.green[500],
+  [TipoManutencao.CORRETIVA]: colors.amber[700]
 };
 
 const formatDate = (date: string) =>
-  new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
+  date ? new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`)) : "--";
 
 const ManutencoesTable: React.FC<ManutencoesTableProps> = ({ dataSource, onUpdate, onDelete }) => {
   const columns: readonly GridColDef<Manutencao>[] = [
     {
       flex: 0.12,
       field: "placa",
-      headerName: "Placa",
-      minWidth: 120
+      headerName: "Veículo (Placa)",
+      minWidth: 140
     },
     {
       flex: 0.12,
-      field: "tipo",
-      headerName: "Tipo de veículo",
-      minWidth: 140
+      field: "tipoManutencao",
+      headerName: "Tipo",
+      minWidth: 120,
+      renderCell: ({ row }) => {
+        const color = maintenanceTypeColorMap[row.tipoManutencao];
+        return <Chip size="small" label={row.tipoManutencao} sx={{ background: changeOpacity(color, 20), color }} />;
+      }
     },
     {
       flex: 0.3,

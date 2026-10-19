@@ -1,6 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import Logo from "../common/Logo";
-import { GridViewOutlined, LocalShippingOutlined, GroupAddOutlined, LocationOnOutlined } from "@mui/icons-material";
+import {
+  GridViewOutlined,
+  LocalShippingOutlined,
+  GroupAddOutlined,
+  LocationOnOutlined,
+  BuildOutlined
+} from "@mui/icons-material";
 import SideBarItem from "./SideBarItem";
 
 const Sidebar = () => {
@@ -28,6 +34,7 @@ const Sidebar = () => {
         <SideBarItem href="/dashboard/veiculos" label="Veículos" icon={<LocalShippingOutlined />} />
         <SideBarItem href="/dashboard/motoristas" label="Motoristas" icon={<GroupAddOutlined />} />
         <SideBarItem href="/dashboard/viagens" label="Viagens" icon={<LocationOnOutlined />} />
+        <SideBarItem href="/dashboard/manutencoes" label="Manutenção" icon={<BuildOutlined />} />
       </Box>
       <Typography variant="caption" color="textDisabled" sx={{ marginTop: "auto", textAlign: "center" }}>
         copyright © 2026

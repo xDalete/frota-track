@@ -71,16 +71,22 @@ export type Manutencao = {
   id: number;
   placa: string;
   tipo: TipoVeiculo;
+  tipoManutencao: TipoManutencao;
   descricao: string;
   dataInicio: string;
   dataFim: string;
   status: StatusManutencao;
 };
 
+export enum TipoManutencao {
+  PREVENTIVA = "Preventiva",
+  CORRETIVA = "Corretiva"
+}
+
 export enum StatusManutencao {
   CONCLUIDO = "Concluído",
-  EM_ANDAMENTO = "Em andamento",
-  PENDENTE = "Pendente"
+  EM_ANDAMENTO = "Em Andamento",
+  AGENDADA = "Agendada"
 }
 
 export type WithId<T> = T & { id: number };
