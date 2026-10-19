@@ -67,4 +67,20 @@ export type Viagem = {
   status: StatusViagem;
 };
 
+export type Manutencao = {
+  id: number;
+  placa: string;
+  tipo: TipoVeiculo;
+  descricao: string;
+  dataInicio: string;
+  dataFim: string;
+  status: StatusManutencao;
+};
+
+export enum StatusManutencao {
+  CONCLUIDO = "Concluído",
+  EM_ANDAMENTO = "Em andamento",
+  PENDENTE = "Pendente"
+}
+
 export type WithId<T> = T & { id: number };
