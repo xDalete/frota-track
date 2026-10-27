@@ -1,14 +1,13 @@
 "use client";
 
-import { Box, Button, Card, CardContent, Divider, Link, Typography, useColorScheme } from "@mui/material";
+import { Box, Button, Card, CardContent, Divider, Link, Typography, IconButton, useColorScheme } from "@mui/material";
 import { signIn } from "next-auth/react";
 import LoginForm from "@/components/login/LoginForm";
-import { GitHub, Google } from "@mui/icons-material";
+import { GitHub, Google, DarkMode, LightMode } from "@mui/icons-material";
 
 export default function SignInPage() {
-  const { mode } = useColorScheme();
+  const { mode, setMode } = useColorScheme();
 
-  // TODO: integrar a recuperação de senha, o reset de senha e a autenticação real do backend quando a API estiver pronta.
   const handleGithubLogin = () => {
     signIn("github", { redirectTo: "/dashboard" });
   };
@@ -25,12 +24,28 @@ export default function SignInPage() {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        position: "relative",
         backgroundImage:
           mode === "dark"
             ? "radial-gradient(hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))"
             : "radial-gradient(hsl(210, 50%, 85%), hsl(0, 0%, 100%))"
       }}
     >
+        <Box sx={{ position: "absolute", top: 16, right: 16 }}>
+        <IconButton
+          onClick={() => setMode(mode === "dark" ? "light" : "dark")}
+          color="inherit"
+          aria-label="alternar tema"
+          sx={{
+            border: "1px solid",
+            borderColor: "divider",
+            backgroundColor: "background.paper"
+          }}
+        >
+          {mode === "dark" ? <LightMode /> : <DarkMode />}
+        </IconButton>
+      </Box>
+
       <Card
         sx={{
           width: "100%",
